@@ -7,21 +7,14 @@ def wordToPiglatin(word):
         return None
     startwithUpperCase = False
     if ord(word[0]) >= 65 and  ord(word[0]) <= 90:
-    	startwithUpperCase = True    	
-    lowerCaseWord = word.lower()
+    	startwithUpperCase = True
     result = ''
-    if lowerCaseWord[0] in 'aeiou':
+    if word[0] in 'aeiou' or word[0] in 'AEIOU':
             result = word + 'way'
     else:
-        result = lowerCaseWord[1:] + lowerCaseWord[0] + 'ay'
+        result = word[1:] + word[0] + 'ay'
         if startwithUpperCase:
-        	upperCaseResult = []
-        	for i, c in enumerate(result):
-        		upperCaseResult.append(result[i]) 
-        	upperCaseResult[0] = upperCaseResult[0].upper()
-        	result = ''.join(upperCaseResult) 	
-        	
-        	 # result[0].upper() + result[1:]
+        	result = result[0].upper() + result[1:].lower()
     return result
 
 
@@ -33,4 +26,5 @@ print (wordToPiglatin('Python'))
 print (wordToPiglatin('computer'))
 print (wordToPiglatin('a'))
 print (wordToPiglatin('B'))
+print (wordToPiglatin('Aa'))
 

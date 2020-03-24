@@ -19,7 +19,7 @@ def sentenceToPigLatin(sentence):
     if len(sentence) < 1:
         return ''
     resultList = []
-    for word in sentence.split(' '):
+    for word in sentence.split():
         resultList.append(wordToPigLatin(word))
     return ' '.join(resultList)
 

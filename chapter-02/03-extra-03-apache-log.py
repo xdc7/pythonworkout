@@ -3,14 +3,14 @@ Read through an Apache logfile. If there is a 404 error — you can just search 
 
 """
 import re
-notFoundRegex = re.compile(r'(\s404\s)')
+found404Regex = re.compile(r'(\s404\s)')
 ipAddressRegex = re.compile(r'(\d+[.]\d+[.]\d+[.]\d+)')
 counter = 0
 with open ('access.log') as f:
     for line in f.readlines():
         # An alternate way to find the ' 404 ' string without using regex:
         # if  ' 404 ' in line:
-        if notFoundRegex.search(line):
+        if found404Regex.search(line):
             counter += 1
             ipAddress = ipAddressRegex.search(line).group()
             print (ipAddress)

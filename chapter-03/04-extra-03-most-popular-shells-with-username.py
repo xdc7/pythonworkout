@@ -1,7 +1,7 @@
 """
-Write a program to read /etc/passwd on a Unix computer. The first field contains the username, and the final field contains the user’s "shell," the command interpreter. Display the shells in decreasing order of popularity, such that the most-popular shell is shown first, the second-most popular shell second, and so forth.
+Write a program to read /etc/passwd on a Unix computer. The first field contains the username, and the final field contains the user’s "shell," the command interpreter. Display the shells in decreasing order of popularity, such that the most-popular shell is shown first, the second-most popular shell second, and so forth. For an added challenge, after displaying each shell, also show the usernames (sorted alphabetically) who use each of those shells.
 """ 
-
+import operator
 from collections import Counter
 
 passwdFile = """root:x:0:0:root:/root:/bin/bash
@@ -35,7 +35,13 @@ sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
 pollinate:x:110:1::/var/cache/pollinate:/bin/false
 userx:x:1000:1000:,,,:/home/userx:/bin/bash"""
 
-import operator
+# passwdFile = """
+# root:x:0:0:root:/root:/bin/bash
+# root2:x:0:0:root:/root:/bin/bash
+# """
+
+def sortDict(shellDict):
+    print (shellDict)
 
 def most_popular_shell(passwdFile):
     shells = {}
@@ -43,10 +49,24 @@ def most_popular_shell(passwdFile):
         if not line:
             continue
         shell = line.split(':')[-1]
+        user = line.split(':')[0]
         if shells.get(shell):
-            shells[shell] += 1
+            shells[shell]['count'] += 1
+            shells[shell]['users'].append(user)
         else:
-            shells.setdefault(shell,1)
-    return [item[0] for item in sorted(shells.items(), key= operator.itemgetter(1), reverse=True)] 
+            shells[shell] = {'count' : 1, 'users' : [user]}
+   
+    # Easier way to understand how the sorting works
+    # items =  sorted(tuple(shells.items()), key=lambda item: item[1].get('count'), reverse=True)
+    # result = {}
+    # for item in items:
+    #     result[item[0]] = sorted(item[1].get("users"))
+    
+    # One-liner or a more 'pythonic way'
+    result = {item[0]: f' {sorted(item[1].get("users"))}' for item in sorted(tuple(shells.items()), key=lambda item: item[1].get('count'), reverse=True)}
 
+    return result
+    
 print (most_popular_shell(passwdFile))
+
+

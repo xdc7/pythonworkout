@@ -17,9 +17,9 @@ def printTuple(movies,choice):
     index = 1
   elif choice.lower() == 'd':
     index = 2
-  print ("{0:15} {1:6} {2:15}".format("Title", "Length", "Director"))
+  print ("{0:20} {1:6} {2:15}".format("Title", "Length", "Director"))
   for movie in sorted(movies, key=operator.itemgetter(index)):
-    print ("{0:15} {1:6} {2:15}".format(*movie))
+    print ("{0:20} {1:6} {2:15}".format(*movie))
 
 
 movies = [

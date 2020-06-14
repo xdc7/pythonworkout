@@ -10,10 +10,11 @@ def calculateFactors(num):
             factors.append(i)
     return factors
 
+uniqueFactors = []
 result = {}
 
 integerInput = input('Enter integers separated by spaces...\n')
-
+   
 integers = integerInput.split()
 
 for integer in integers:
@@ -21,29 +22,16 @@ for integer in integers:
     integer = int(integer)
     factors = calculateFactors(integer)
     for factor in factors:
-        result[factor] = None
+        if factor not in uniqueFactors:
+            uniqueFactors.append(factor)
 
 for integer in integers:
     integer = int(integer)
-    for factor in result.keys():
+    for factor in uniqueFactors:
             if factor % integer == 0:
                 if result.get(factor):
                     result[factor].append(integer)
                 else:
                     result[factor] = [integer]
 
-finalResult = {}
-
-for k,v in result.items():
-    if v == None:
-        continue
-    finalResult[k] = v
-
-print(finalResult)   
-
-
-
-# print(calculateFactors(75))
-# print(calculateFactors(66))
-# print(calculateFactors(136))
-# print(calculateFactors(13))
+print(result)

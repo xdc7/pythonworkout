@@ -28,20 +28,7 @@ with open(filePath) as f:
     shell = formattedLine[-1]
     homeDir = formattedLine[-2]
     
-    users[user] = {'userId': userId, 'shell':shell, 'homeDir': homeDir}
-
-    # if users.get(user):
-    #   users[user].append(user)
-    # else:
-    #   users[user] = [user]
-      
-    
-
-# sortedShells = sorted(shells.items(),key=itemgetter(0))
-
-# for item in sortedShells:
-#   print(f"shell: {item[0]} users: {item[1]}")
-  
+    users[user] = {'userId': userId, 'shell':shell, 'homeDir': homeDir}  
 
 for user, vals in sorted(users.items()):
     print (f"user: {user} -- values: {vals}")

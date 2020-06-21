@@ -5,10 +5,18 @@ Create a dictionary in which the keys are the names of files on your system, and
 
 import os
 
-directory = input('Enter a directory location....\n')
+# Function to return the absolute file paths of files in a directory
+def getAbsoluteFilePaths(directory):
+   for dirpath,_,filenames in os.walk(directory):
+       for f in filenames:
+           yield os.path.abspath(os.path.join(dirpath, f))
 
-# directory = 'C:\\Windows\\System32'
+# directory = input('Enter a directory location....\n')
 
-for fileName in os.listdir(directory):
-    # print(f"fileName: {fileName}-- fileSize: {os.path.getsize(directory)}")
-    print(f"fileName: {fileName}-- fileSize in KB: {os.stat(directory).st_size / 1024}")
+directory = 'C:\\Windows\\System32'
+
+
+
+for fileName in getAbsoluteFilePaths(directory):
+    print(fileName)
+    print(f"fileName: {fileName}-- fileSize: {os.stat(fileName).st_size / 1024} KB")

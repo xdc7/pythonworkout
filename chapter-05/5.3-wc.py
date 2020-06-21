@@ -1,6 +1,6 @@
 """
 
-Unix systems contain many utility functions. One of the most useful Python. However, your version of wc will return four different types of information about the files: Number of characters (including whitespace) Number of words (separated by whitespace) Number of lines Number of unique words (case sensitive, so "NO" is different from "no") The program should ask the user for the name of an input file, and then produce output for that file.
+Ask the user to enter the name of a text file, and then (on one line, separated by spaces) words whose frequencies should be counted in that file. Count how many times those words appear in a dictionary, using the user-entered words as the keys, and the counts as the values.
 
 """
 

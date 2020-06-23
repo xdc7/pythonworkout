@@ -31,5 +31,13 @@ for fileName in getAbsoluteFilePaths(filePath):
                 if alphabetRegex.search(letter):
                     results[letter] = results.get(letter,0) + 1
 
-for letter, count in sorted(results.items(), key= lambda item: item[1], reverse=True):
-    print(f"letter: {letter} --- count: {count}")
+
+# for letter, count in sorted(results.items(), key= lambda item: item[1], reverse=True):
+#     results[letter] = count
+#     # print(f"letter: {letter} --- count: {count}")
+
+# print (results)
+
+sortedLetters = sorted ((count, letter) for letter, count in results.items())
+
+print(sortedLetters[-5:])

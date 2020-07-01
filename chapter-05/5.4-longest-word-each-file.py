@@ -37,11 +37,12 @@ import os, sys
 
 def findLongestWordInFile(fileName):
     longestWord = ''
-    for line in open(fileName):
-        for word in line.split():
-            if len(word) > len(longestWord):
-                longestWord = word
-    return longestWord
+    if os.path.isfile(fileName):
+        for line in open(fileName):
+            for word in line.split():
+                if len(word) > len(longestWord):
+                    longestWord = word
+        return longestWord
 
 
 directory = input('Input a directory name...\n')
